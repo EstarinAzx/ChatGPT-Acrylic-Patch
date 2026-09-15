@@ -85,6 +85,10 @@ Back up the existing configuration before changing it. Add or update the process
 | Extend frame into client area | On |
 | Blur Behind | **Off** |
 
+Match these settings in the **ChatGPT** rule:
+
+![Mica For Everyone ChatGPT rule showing Acrylic, Extend frame into client area On, and Enable blur behind Off](images/mica-for-everyone-settings.png)
+
 In the tested JSON format these correspond to `backdropPreference: "Acrylic"`, `extendFrameIntoClientArea: true`, and `enableBlurBehind: false`, on a `type: "process"`, `processName: "ChatGPT"` rule. Ensure one effective matching rule and inspect any competing rules. Prefer MFE's own settings interface; if editing its file, ensure the running app will not overwrite the edit and reload it appropriately.
 
 **The process rule applies to both executable copies named ChatGPT.** The archive patch affects only the editable copy, but the MFE appearance rule can affect the Store app too. Explain that scope before applying it.
