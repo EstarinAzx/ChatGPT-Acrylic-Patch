@@ -2,6 +2,9 @@
 
 ![ChatGPT desktop with the smoked-glass Acrylic patch applied](images/chatgpt-acrylic-preview.png)
 
+> [!IMPORTANT]
+> **Mica For Everyone is required for this documented setup. Install it and keep it running whenever you use the patched app.** The patch files and `gpt` launcher do not install or start it for you. Get it from the [official Mica For Everyone project](https://github.com/MicaForEveryone/MicaForEveryone), then follow the [configuration steps below](#3-configure-mica-for-everyone): **Acrylic**, **Extend frame into client area on**, and **Blur Behind off**.
+
 ## Get started
 
 1. [Download this repository as a ZIP](https://github.com/EstarinAzx/ChatGPT-Acrylic-Patch/archive/refs/heads/main.zip), or clone it.
@@ -26,7 +29,7 @@ The app itself, accounts, profiles and Mica For Everyone settings are not includ
 
 ## Paste this into your agent
 
-> Apply the smoked-glass Acrylic appearance described in the attached README.md using its supplied patch, CSS, checks and launcher. Read the guide and scripts first. Discover my actual Windows/app/Mica For Everyone installation and check the supported archive hash before making changes. Prepare a separate writable app copy with an isolated profile, adapt only the machine-specific paths, back up the relevant configuration, and apply the supported patch. Preserve my Store installation, existing profiles, security settings and unrelated Mica For Everyone rules. If the build or runtime differs, report the mismatch and stop before patching; do not weaken the guards. Run the supplied checks, create a desktop shortcut, and set up a PowerShell `gpt` command for the patched copy using the instructions below. Preserve any existing command with that name. Give me rollback instructions and a short visual checklist for restored and truly maximized windows. Ask me only for necessary human steps or decisions.
+> Apply the smoked-glass Acrylic appearance described in the attached README.md using its supplied patch, CSS, checks and launcher. Read the guide and scripts first. Treat Mica For Everyone as a prerequisite: verify it is installed, running, and configured with the documented ChatGPT rule before calling the setup complete; if it is missing, help me install it from the official project. Discover my actual Windows/app/Mica For Everyone installation and check the supported archive hash before making changes. Prepare a separate writable app copy with an isolated profile, adapt only the machine-specific paths, back up the relevant configuration, and apply the supported patch. Preserve my Store installation, existing profiles, security settings and unrelated Mica For Everyone rules. If the build or runtime differs, report the mismatch and stop before patching; do not weaken the guards. Run the supplied checks, create a desktop shortcut, and set up a PowerShell `gpt` command for the patched copy using the instructions below. Preserve any existing command with that name. Give me rollback instructions and a short visual checklist for restored and truly maximized windows. Ask me only for necessary human steps or decisions.
 
 ## Compatibility gate
 
