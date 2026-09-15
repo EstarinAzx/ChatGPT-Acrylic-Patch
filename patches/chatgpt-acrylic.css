@@ -1,0 +1,26 @@
+/* One continuous smoked-glass backing, like the VS Code workbench.
+   Scope it to app-shell/Settings windows; leave overlays and opaque mode alone. */
+:root[data-codex-window-type="electron"]:not(.electron-opaque)
+  body:has(
+    [data-app-shell-main-surface="default"],
+    .electron\:bg-surface > .scrollbar-stable.overflow-y-auto.p-panel
+  ) {
+  background-color: rgba(8, 10, 14, 0.70) !important;
+}
+
+/* Reveal the shared backing without stacking extra tint over it.
+   Cards, menus, controls and text retain their own styling. */
+:root[data-codex-window-type="electron"]:not(.electron-opaque)
+  :is(
+    ._ApplicationMenuTopBar_xmgnx_2,
+    [data-app-shell-main-surface="default"],
+    .app-shell-left-panel,
+    .electron\:bg-surface:has(> .scrollbar-stable.overflow-y-auto.p-panel)
+  ) {
+  background-color: transparent !important;
+}
+
+:root[data-codex-window-type="electron"]:not(.electron-opaque)
+  [data-app-shell-main-surface="default"] {
+  --app-shell-panel-background: transparent;
+}
