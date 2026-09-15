@@ -26,7 +26,7 @@ The app itself, accounts, profiles and Mica For Everyone settings are not includ
 
 ## Paste this into your agent
 
-> Apply the smoked-glass Acrylic appearance described in the attached README.md using its supplied patch, CSS, checks and launcher. Read the guide and scripts first. Discover my actual Windows/app/Mica For Everyone installation and check the supported archive hash before making changes. Prepare a separate writable app copy with an isolated profile, adapt only the machine-specific paths, back up the relevant configuration, and apply the supported patch. Preserve my Store installation, existing profiles, security settings and unrelated Mica For Everyone rules. If the build or runtime differs, report the mismatch and stop before patching; do not weaken the guards. Run the supplied checks and give me a shortcut, rollback instructions, and a short visual checklist for restored and truly maximized windows. Ask me only for necessary human steps or decisions.
+> Apply the smoked-glass Acrylic appearance described in the attached README.md using its supplied patch, CSS, checks and launcher. Read the guide and scripts first. Discover my actual Windows/app/Mica For Everyone installation and check the supported archive hash before making changes. Prepare a separate writable app copy with an isolated profile, adapt only the machine-specific paths, back up the relevant configuration, and apply the supported patch. Preserve my Store installation, existing profiles, security settings and unrelated Mica For Everyone rules. If the build or runtime differs, report the mismatch and stop before patching; do not weaken the guards. Run the supplied checks, create a desktop shortcut, and set up a PowerShell `gpt` command for the patched copy using the instructions below. Preserve any existing command with that name. Give me rollback instructions and a short visual checklist for restored and truly maximized windows. Ask me only for necessary human steps or decisions.
 
 ## Compatibility gate
 
@@ -101,7 +101,25 @@ The patcher saves `app.asar.before-acrylic.bak` next to the archive, appends the
 
 Launch through `<copy-root>\Launch-ChatGPT-Acrylic.ps1`, using a hidden PowerShell window for the launcher. Respect the machine's execution policy; do not bypass or change it. If policy prevents launch, report the restriction and agree on an allowed launch method.
 
-Create a clearly labelled shortcut, such as **ChatGPT Acrylic**, to this launcher. An optional `gpt` command is convenience only; inspect existing commands before adding one and avoid changing PATH or shell profiles without need. Normal Store shortcuts still launch the original installation.
+Create a clearly labelled shortcut, such as **ChatGPT Acrylic**, to this launcher. Normal Store shortcuts still launch the original installation.
+
+#### Everyday launch: `gpt`
+
+After your agent sets it up, open PowerShell and type:
+
+```powershell
+gpt
+```
+
+This opens the patched copy with its separate profile and returns the terminal prompt immediately. Mica For Everyone must also be running for the documented setup.
+
+**Agent setup:** create a small `gpt.ps1` wrapper that starts `Launch-ChatGPT-Acrylic.ps1` through Windows PowerShell in a hidden window, using `Start-Process` without waiting. Point it at the recipient's actual launcher path; keep profile handling in the supplied launcher. The wrapper is generated locally because its install path varies by machine; it is not included as a preconfigured file in this repo.
+
+1. Check `Get-Command gpt -All -ErrorAction SilentlyContinue` and inspect any existing wrapper before writing. Preserve an unrelated command; use an agreed alternative such as `gpt-acrylic` if the name is taken.
+2. Prefer an existing user-owned bin directory already on PATH. On the original machine this was `%USERPROFILE%\.local\bin\gpt.ps1`; that directory is not guaranteed to exist or be on PATH elsewhere. If no suitable directory exists, explain the required user PATH change and obtain approval, or keep the desktop shortcut as the launch method. Preserve shell profiles and execution policy.
+3. Verify `Get-Command gpt` resolves to the intended wrapper, run it from PowerShell, and confirm the launched executable belongs to the editable copy. If user PATH was changed, use a fresh terminal for verification.
+
+When reporting completion, tell the user the actual command name and shortcut location. For removal, delete only the wrapper created for this setup and undo only a PATH addition made for it, if that directory is no longer needed.
 
 ### 5. Verify before calling it finished
 
