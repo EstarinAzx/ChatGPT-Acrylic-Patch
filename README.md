@@ -3,7 +3,7 @@
 ![ChatGPT desktop with the smoked-glass Acrylic patch applied](images/chatgpt-acrylic-preview.png)
 
 > [!IMPORTANT]
-> **Mica For Everyone is required for this documented setup. Install it and keep it running whenever you use the patched app.** The patch files and `gpt` launcher do not install or start it for you. Get it from the [official Mica For Everyone project](https://github.com/MicaForEveryone/MicaForEveryone), then follow the [configuration steps below](#3-configure-mica-for-everyone): **Acrylic**, **Extend frame into client area on**, and **Blur Behind off**.
+> **Mica For Everyone is required for this documented setup. Install it and keep it running whenever you use the patched app.** The patch files and `gpt` launcher do not install or start it for you. Install it from the [Microsoft Store](https://apps.microsoft.com/detail/9p8v68p4z78p?hl=en-US&gl=NZ), or visit the [official Mica For Everyone project](https://github.com/MicaForEveryone/MicaForEveryone), then follow the [configuration steps below](#3-configure-mica-for-everyone): **Acrylic**, **Extend frame into client area on**, and **Blur Behind off**.
 
 ## Get started
 
