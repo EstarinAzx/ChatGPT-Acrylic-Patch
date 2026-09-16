@@ -24,3 +24,10 @@
   [data-app-shell-main-surface="default"] {
   --app-shell-panel-background: transparent;
 }
+
+/* Keep the Thinking/status shimmer legible against the smoked-glass backing. */
+:root[data-codex-window-type="electron"]:not(.electron-opaque)
+  [data-app-shell-main-surface="default"] .loading-shimmer-pure-text._cadencedShimmer_of4aq_1 {
+  --loading-shimmer-base: oklch(78% 0.01 260);
+  --loading-shimmer-highlight: oklch(93% 0.005 260);
+}

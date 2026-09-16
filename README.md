@@ -13,7 +13,7 @@
 
 Give this folder to an agent with local Windows file and terminal access, then paste the prompt below. The agent can inspect your installation, prepare an editable copy, apply the compatible patch, and verify it. A normal web chat without local tools cannot perform the installation.
 
-This is a community modification of one tested Windows build, not an official app setting or a universal installer. It creates blurred glass behind the app with one charcoal backing: `rgba(8, 10, 14, 0.70)`. Text stays fully opaque. The 70% value describes the CSS backing, not overall window opacity or a native Acrylic tint control.
+This is a community modification of one tested Windows build, not an official app setting or a universal installer. It creates blurred glass behind the app with one charcoal backing: `rgba(8, 10, 14, 0.70)`. Window/body opacity stays unchanged, and the Thinking/status shimmer uses a brighter grey base with a pale sweep. The 70% value describes the CSS backing, not overall window opacity or a native Acrylic tint control.
 
 ## What to give your agent
 
@@ -33,7 +33,7 @@ The app itself, accounts, profiles and Mica For Everyone settings are not includ
 
 ## Compatibility gate
 
-The recorded successful installation on 15 September 2026 was:
+The recorded successful installation on 15 September 2026, with the Thinking-text contrast update accepted on 16 September, was:
 
 | Item | Tested value |
 | --- | --- |
@@ -143,7 +143,7 @@ Replace `<copy-root>` with the actual absolute path. The three checks respective
 Have the user check the real app over a colourful background:
 
 - Blur is visible through the title bar, main area and sidebar; the backing looks like one continuous charcoal layer.
-- Text and controls stay readable and fully opaque. Settings opens normally with the same backing.
+- Text and controls stay readable. During a response, the Thinking/status label stays visible through its pale shimmer. Settings opens normally with the same backing.
 - Restored and **truly maximized** windows both retain the expected glass appearance. Also check restore after maximizing and minimize/restore.
 - Normal app interactions still work. Record any opaque fallback instead of forcing transparency through it.
 
@@ -162,6 +162,23 @@ The supplied CSS uses one `rgba(8, 10, 14, 0.70)` backing. Increasing the last n
 
 The approved 70% appearance was visually accepted on the original machine. Native maximization had been confirmed for the combined fix earlier; it was not visually retested after the final CSS-only tint adjustment. Treat another machine's visual checklist as required verification, not an assumed result.
 
+## Thinking text contrast
+
+The CSS gives the cadenced Thinking/status shimmer a base of `oklch(78% 0.01 260)` and a highlight of `oklch(93% 0.005 260)`. The original dark-mode style was faint with a black sweep. These overrides preserve the animation and reduced-motion behavior, and apply only inside the transparent main surface. The 70% backing is unchanged.
+
+This appearance was accepted on the tested machine. Browser computed-style checks verified the colors, unchanged body tint/opacity and exclusion of opaque mode and non-main surfaces. The selector includes a build-specific CSS class, so a future app port must inspect it again.
+
+## Updating an existing patch on the same app build
+
+**Keep the old patch sources until rollback is complete.** This applies to downloading a newer patch bundle or pulling this repository, including the Thinking-text update.
+
+1. Save the patch files currently used by your installation, including local path edits, and close the editable app.
+2. From those old files, run `python patches/chatgpt-acrylic.py --rollback`. Verify that the archive matches the supported pristine hash.
+3. Download or pull the new patch sources and reapply your machine-specific target/check paths. Preserve the existing launcher, profile and MFE rule.
+4. Run the new patcher, reopen the editable app and repeat the checks and visual checklist above.
+
+If you already replaced the sources, recover the matching old version into a separate folder and restore its original local path edits before rollback. Do not disable the unexpected-local-edit guard.
+
 ## Rollback and updates
 
 To restore the editable app's original archive, close that copy and run:
@@ -174,7 +191,17 @@ Verify the restored archive has the pristine hash listed above. This restores th
 
 If rollback refuses because sources changed, use the matching saved patch sources. If the archive itself changed, inspect it first. A verified pristine backup may be restored to the verified editable target after preserving unexpected edits; do not force an unchecked overwrite.
 
-A Store update does not establish that the editable copy updated. Track its version separately. For a new release, obtain a fresh copy and repeat the compatibility gate; do not carry this old patch forward blindly. If incompatible, use the unmodified current app until a new port is reviewed.
+### Moving to a newer app release
+
+Updating the original Store installation does not refresh this separate editable copy. It remains on its current app files until deliberately replaced. Check actual installed versions when an upgrade is requested.
+
+1. Quit the editable app and back up its working app directory, launcher, patch sources and separate profile outside the replacement directory. Keep profile backups local and out of this repository. Preserve the existing shortcut/command and profile path.
+2. Copy the new app into a separate staging directory, leaving the working copy and Store installation intact. Repeat the compatibility gate. An unknown build needs a reviewed port before patching; changing only its expected hash is not a port.
+3. For that port, inspect the new renderer assets, app-shell/Settings selectors, Thinking shimmer class, native material branch and archive integrity format. Adapt the patch and checks while preserving their guards. The reference patcher's target is fixed: explicitly adapt it to staging instead of accidentally modifying the working copy.
+4. Use a pristine archive backup from the NEW build. Never reuse the old build's `app.asar.before-acrylic.bak` beside a new archive. Prepare and verify the replacement before switching the live app directory, keeping the previous copy available for rollback.
+5. Preserve the launcher/profile and MFE configuration, then run the archive, selector and desktop checks against the replacement. Confirm restored/maximized Acrylic, Settings, controls and Thinking readability. If validation fails, restore the saved app/launcher; restore the saved profile if the new build migrated it incompatibly.
+6. Record the new build identifiers, pristine hash, changed selectors and verification results in the guide. If a compatible port is unavailable, use the unmodified current app rather than weakening the patch guards.
+
 
 ## Quick troubleshooting
 
@@ -183,7 +210,7 @@ A Store update does not establish that the editable copy updated. Track its vers
 | Unknown build / unexpected local edits | Stop and compare archive hashes and patch sources. Keep the guards. |
 | App still looks opaque | Confirm the shortcut launches the editable path, MFE is running, transparency is enabled, and the three checks pass. Preserve intentional opaque fallback. |
 | Maximizing darkens the app | Confirm both the native Acrylic patch and Blur Behind **off**, then fully close/reopen the editable copy. |
-| Text looks washed out | Inspect for a separate whole-window/body opacity modification. The supplied patch changes background colour only. |
+| Text looks washed out | Inspect for a separate whole-window/body opacity modification. The supplied patch does not reduce window/body opacity. |
 | Native desktop check finds no window | Confirm the target path, exact window title and that the editable app is visible and not minimized. |
 | Separate copy asks for sign-in | Sign in manually; its profile is intentionally separate. |
 
